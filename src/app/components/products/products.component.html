@@ -21,9 +21,9 @@
           <tr *ngFor="let product of products; let i=index" (click)="selectProduct(i)" [ngClass]="rowIndex == i? 'active':''">
             <th scope="row">{{product.productId}}</th>
             <td>{{product.productName}}</td>
-            <td>{{product.productDescription}}</td>
-            <td>{{product.createdDate}}</td>
-            <td>{{product.unitPrice}}</td>
+            <td>{{product.productDescription | contentLimiter}}</td>
+            <td>{{product.createdDate | date | uppercase}}</td> <!-- date pipe (date:"yyyy MM dd")-->
+            <td>{{product.unitPrice | currency:"Rs."}}</td> <!-- currency pipe -->
             <td>{{product.quantity}}</td>
             <td>
               <!-- The [ngClass] directive expects an object where keys represent the CSS
