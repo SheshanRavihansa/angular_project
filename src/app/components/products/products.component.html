@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products">
+          <tr *ngFor="let product of products; let i=index" (click)="selectProduct(i)" [ngClass]="rowIndex == i? 'active':''">
             <th scope="row">{{product.productId}}</th>
             <td>{{product.productName}}</td>
             <td>{{product.productDescription}}</td>
@@ -36,8 +36,9 @@
               <span [ngClass] ="{'bg-success': true }" *ngIf="product.quantity > 200">Sufficient Inventory Level</span>
             </td>
             <td>
-              <i class="fa fa-eye icon"></i>
-              <i class="fa fa-pencil-square-o icon"></i>
+              <button [disabled]="rowIndex != i || !rowSelected" ><i class="fa fa-eye icon"></i></button>
+              <button [disabled]="rowIndex != i || !rowSelected" ><i class="fa fa-pencil-square-o icon"></i></button>
+              <!-- interpolation with data binding -->
             </td>
           </tr>
         </tbody>

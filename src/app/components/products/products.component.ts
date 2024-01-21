@@ -15,6 +15,9 @@ export class ProductsComponent {
   firstProductItemName = "White Basmathi Rice";
   secondProductItemName = "wheat Flour";
 
+  public rowIndex: number | undefined;
+  public rowSelected: boolean | undefined;
+
   public getPriceofRice() {
     return 350;
   }
@@ -54,4 +57,10 @@ export class ProductsComponent {
       'productDescription': "Imported mysoor dhal from India"
     }
   ]
+
+  public selectProduct(row: number) {
+    this.rowSelected = true;
+    this.rowIndex = row;
+  }
+
 }
