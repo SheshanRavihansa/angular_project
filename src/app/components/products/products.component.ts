@@ -12,11 +12,20 @@ import { Component } from '@angular/core';
 })
 export class ProductsComponent {
 
+  showAddProduct: boolean | undefined;
+
   firstProductItemName = "White Basmathi Rice";
   secondProductItemName = "wheat Flour";
 
   public rowIndex: number | undefined;
   public rowSelected: boolean | undefined;
+
+  public showAddProducts() {
+    this.showAddProduct = true;
+  }
+  public hideAddProducts() {
+    this.showAddProduct = false;
+  }
 
   public getPriceofRice() {
     return 350;
