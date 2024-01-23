@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ProductsComponent } from '../products/products.component';
 
 @Component({
   selector: 'app-add-poduct',
@@ -12,7 +13,7 @@ export class AddPoductComponent {
 
   onSubmit() {}
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private hide: ProductsComponent) {}
 
   productFrom = this.fb.group({
     productName: ['', Validators.required],
@@ -29,6 +30,10 @@ export class AddPoductComponent {
 
   get f() {
     return this.productFrom.controls;
+  }
+
+  hideAddProducts(){
+    this.hide.hideAddProducts();
   }
 
 }
