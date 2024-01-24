@@ -1,5 +1,7 @@
 import { ReturnStatement } from '@angular/compiler';
 import { Component } from '@angular/core';
+import { Product } from '../../model/product.model';
+import { ProductService } from '../../service/product.service';
 
 @Component({
   selector: 'app-products',
@@ -13,12 +15,17 @@ import { Component } from '@angular/core';
 export class ProductsComponent {
 
   showAddProduct: boolean | undefined;
-
+  isLoading :boolean = false;
   firstProductItemName = "White Basmathi Rice";
   secondProductItemName = "wheat Flour";
-
   public rowIndex: number | undefined;
   public rowSelected: boolean | undefined;
+
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
+  constructor(private productService: ProductService) {}
 
   public showAddProducts() {
     this.showAddProduct = true;
@@ -35,37 +42,19 @@ export class ProductsComponent {
     return 225;
   }
 
-  public products = [
-    {
-      productId: "001",
-      'productName': "White Basmathi Rice",
-      'createdDate': "Oct 25, 2020",
-      'quantity': 100,
-      'unitPrice': "400",
-      'productDescription': "White Basmathi Rice imported from pakistan"
-    }, {
-      productId: "002",
-      'productName': "Flour",
-      'createdDate': "Jan 14, 2020",
-      'quantity': 50,
-      'unitPrice': "190",
-      'productDescription': "Super Fine Whole grain general Purpose flour. Lorem ipsum dolor sit, amet consectetur adipisicing elit."
-    }, {
-      productId: "003",
-      'productName': "sugar",
-      'createdDate': "Aug 03, 2020",
-      'quantity': 1200,
-      'unitPrice': "200",
-      'productDescription': "White sugar manufactured by Palwatte Factory"
-    }, {
-      productId: "004",
-      'productName': "Dhal",
-      'createdDate': "Sep 29, 2020",
-      'quantity': 10,
-      'unitPrice': "200",
-      'productDescription': "Imported mysoor dhal from India. Lorem ipsum dolor sit, amet consectetur adipisicing elit."
-    }
-  ]
+  public products: Product[] = [];
+
+  refresh() {
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.isLoading = true;
+    this.productService.getProducts().subscribe((res) => {
+      this.products = res.data;
+      this.isLoading = false;
+    });
+  }
 
   public selectProduct(row: number) {
     this.rowSelected = true;

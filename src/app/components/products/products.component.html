@@ -2,7 +2,12 @@
   <div class="row">
     <section [ngClass]="showAddProduct? 'col-md-7': '' ">
       <div class="product-header">
-        <h3>Product List</h3>
+        <h1>Product List
+          <span *ngIf="!isLoading" (click)="refresh()" style="cursor: pointer;">
+              <i class="fa fa-refresh" aria-hidden="true"></i>
+          </span>
+          <i *ngIf="isLoading" class="fa fa-refresh fa-spin fa-fw" aria-hidden="true"></i>
+      </h1>
         <button *ngIf="!showAddProduct" type="button" class="btn btn-outline-primary" (click)="showAddProducts()">Add Products</button>
         <button *ngIf="showAddProduct" type="button" class="btn btn-outline-primary" (click)="hideAddProducts()">Close</button>
       </div>
@@ -21,9 +26,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let product of products; let i=index" (click)="selectProduct(i)" [ngClass]="rowIndex == i? 'active':''">
-            <th scope="row">{{product.productId}}</th>
+            <th scope="row">{{product.id}}</th>
             <td>{{product.productName}}</td>
-            <td>{{product.productDescription | contentLimiter}}</td>
+            <td>{{product.description | contentLimiter}}</td>
             <td>{{product.createdDate | date | uppercase}}</td> <!-- date pipe (date:"yyyy MM dd")-->
             <td>{{product.unitPrice | currency:"Rs."}}</td> <!-- currency pipe -->
             <td>{{product.quantity}}</td>
@@ -47,7 +52,7 @@
       </table>
     </section>
     <section class="col-md-5" *ngIf="showAddProduct">
-      <app-add-poduct></app-add-poduct>
+      <app-add-product></app-add-product>
     </section>
   </div>
 </div>

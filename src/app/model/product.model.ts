@@ -1,12 +1,12 @@
 export interface Product {
   id: number;
-  name: string;
+  productName: string;
   description: string;
   category: string;
+  brand: string;
   expiredDate: string;
-  manufacturedDate: string;
-  batchNumber: string;
+  manufacturedDate: string
+  createdDate: string;
   quantity: number;
   unitPrice: number;
-  createdDate: string;
 }
