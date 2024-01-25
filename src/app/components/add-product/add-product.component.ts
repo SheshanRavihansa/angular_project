@@ -27,7 +27,6 @@ export class AddProductComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
-    private productComp: ProductsComponent
   ) {}
 
   ngOnInit(): void {}
@@ -45,9 +44,5 @@ export class AddProductComponent implements OnInit {
       this.isDataUploading = false;
       this.productFrom.reset();
     });
-  }
-
-  hideAddProducts(){
-    this.productComp.hideAddProducts()
   }
 }
