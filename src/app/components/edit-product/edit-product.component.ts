@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-edit-product',
@@ -9,5 +9,12 @@ export class EditProductComponent {
 
   @Input()
   prductId!: number;
+
+  @Output()
+  cancelEditEvent: EventEmitter<void> = new EventEmitter<void>();
+
+  cancel(){
+    this.cancelEditEvent.emit();
+  }
 
 }

@@ -25,8 +25,8 @@ export class AddProductComponent implements OnInit {
 
   isDataUploading = false;
 
-  @Output()
-  productAddEvent: EventEmitter<void> = new EventEmitter<void>();
+  @Output() productAddEvent: EventEmitter<void> = new EventEmitter<void>();
+  @Output() cancelEvent: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +34,10 @@ export class AddProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { }
+
+  cancel(){
+    this.cancelEvent.emit();
+  }
 
   get f() {
     return this.productFrom.controls;

@@ -60,6 +60,10 @@ export class ProductsComponent {
     this.refresh();
   }
 
+  cancelEditView(){
+    this.showEditProduct = false;
+  }
+
   getProducts() {
     this.isLoading = true;
     this.productService.getProducts().subscribe((res) => {
