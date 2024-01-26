@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
 export class EditProductComponent {
 
   @Input()
-  prductId! : number;
+  prductId!: number;
 
 }

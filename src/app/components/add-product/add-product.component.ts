@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Product } from '../../model/product.model';
 import { ProductService } from '../../service/product.service';
@@ -10,6 +10,7 @@ import { ProductsComponent } from '../products/products.component';
   styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent implements OnInit {
+
   productFrom = this.fb.group({
     productName: ['', Validators.required],
     description: ['', Validators.required],
@@ -24,12 +25,15 @@ export class AddProductComponent implements OnInit {
 
   isDataUploading = false;
 
+  @Output()
+  productAddEvent: EventEmitter<void> = new EventEmitter<void>();
+
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   get f() {
     return this.productFrom.controls;
@@ -42,6 +46,7 @@ export class AddProductComponent implements OnInit {
     this.productService.addProduct(values as Product).subscribe((res) => {
       debugger;
       this.isDataUploading = false;
+      this.productAddEvent.emit();
       this.productFrom.reset();
     });
   }

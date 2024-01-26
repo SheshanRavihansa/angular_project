@@ -3,13 +3,15 @@
     <section [ngClass]="showAddProduct || showEditProduct? 'col-md-7': '' ">
       <div class="product-header">
         <h1>Product List
-          <span *ngIf="!isLoading" (click)="refresh()" style="cursor: pointer;">
-              <i class="fa fa-refresh" aria-hidden="true"></i>
+          <!-- <span *ngIf="!isLoading" (click)="refresh()" style="cursor: pointer;">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
           </span>
-          <i *ngIf="isLoading" class="fa fa-refresh fa-spin fa-fw" aria-hidden="true"></i>
-      </h1>
-        <button *ngIf="!showAddProduct" type="button" class="btn btn-outline-primary" (click)="openAddProducts()">Add Products</button>
-        <button *ngIf="showAddProduct" type="button" class="btn btn-outline-primary" (click)="hideAddProducts()">Close</button>
+          <i *ngIf="isLoading" class="fa fa-refresh fa-spin fa-fw" aria-hidden="true"></i> -->
+        </h1>
+        <button *ngIf="!showAddProduct" type="button" class="btn btn-outline-primary" (click)="openAddProducts()">Add
+          Products</button>
+        <button *ngIf="showAddProduct" type="button" class="btn btn-outline-primary"
+          (click)="hideAddProducts()">Close</button>
       </div>
       <table class="table">
         <thead class="thead-light t-head">
@@ -25,7 +27,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products; let i=index" (click)="selectProduct(i, product.id)" [ngClass]="rowIndex == i? 'active':''">
+          <tr *ngFor="let product of products; let i=index" (click)="selectProduct(i, product.id)"
+            [ngClass]="rowIndex == i? 'active':''">
             <th scope="row">{{product.id}}</th>
             <td>{{product.productName}}</td>
             <td>{{product.description | contentLimiter}}</td>
@@ -38,13 +41,15 @@
               you want to apply the bg-danger class if the quantity is less than or equal to 50. -->
               <!-- <span [ngClass]="{'bg-danger': product.quantity <= 50}" *ngIf="product.quantity <= 50">Lower Inventory Level</span> -->
 
-              <span [ngClass] ="{'bg-danger': true }" *ngIf="product.quantity <= 50" >Lower Inventory Level </span>
-              <span [ngClass] ="{'bg-warning': true }" *ngIf="product.quantity > 50 && product.quantity <= 200">Average Inventory Level</span>
-              <span [ngClass] ="{'bg-success': true }" *ngIf="product.quantity > 200">Sufficient Inventory Level</span>
+              <span [ngClass]="{'bg-danger': true }" *ngIf="product.quantity <= 50">Lower Inventory Level </span>
+              <span [ngClass]="{'bg-warning': true }" *ngIf="product.quantity > 50 && product.quantity <= 200">Average
+                Inventory Level</span>
+              <span [ngClass]="{'bg-success': true }" *ngIf="product.quantity > 200">Sufficient Inventory Level</span>
             </td>
             <td>
-              <button [disabled]="rowIndex != i || !rowSelected" ><i class="fa fa-eye icon"></i></button>
-              <button [disabled]="rowIndex != i || !rowSelected" ><i class="fa fa-pencil-square-o icon" (click)="openEditProducts()"></i></button>
+              <button [disabled]="rowIndex != i || !rowSelected"><i class="fa fa-eye icon"></i></button>
+              <button [disabled]="rowIndex != i || !rowSelected"><i class="fa fa-pencil-square-o icon"
+                  (click)="openEditProducts()"></i></button>
               <!-- interpolation with data binding -->
             </td>
           </tr>
@@ -52,7 +57,7 @@
       </table>
     </section>
     <section class="col-md-5" *ngIf="showAddProduct || showEditProduct">
-      <app-add-product *ngIf="showAddProduct"></app-add-product>
+      <app-add-product *ngIf="showAddProduct" (productAddEvent)="updateProductList()"></app-add-product>
       <app-edit-product *ngIf="showEditProduct" [prductId]="selectedProductId"></app-edit-product>
     </section>
   </div>

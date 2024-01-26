@@ -15,10 +15,10 @@ import { ProductService } from '../../service/product.service';
 export class ProductsComponent {
 
   showAddProduct: boolean | undefined;
-  showEditProduct! : boolean; // you can also declare undefined veriables using !
-  selectedProductId! : number;
+  showEditProduct!: boolean; // you can also declare undefined veriables using !
+  selectedProductId!: number;
 
-  isLoading :boolean = false;
+  isLoading: boolean = false;
   firstProductItemName = "White Basmathi Rice";
   secondProductItemName = "wheat Flour";
   public rowIndex: number | undefined;
@@ -28,14 +28,16 @@ export class ProductsComponent {
     this.getProducts();
   }
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) { }
 
   public openAddProducts() {
     this.showAddProduct = true;
   }
+
   public openEditProducts() {
     this.showEditProduct = true;
   }
+
   public hideAddProducts() {
     this.showAddProduct = false;
   }
@@ -52,6 +54,10 @@ export class ProductsComponent {
 
   refresh() {
     this.getProducts();
+  }
+
+  updateProductList() {
+    this.refresh();
   }
 
   getProducts() {
