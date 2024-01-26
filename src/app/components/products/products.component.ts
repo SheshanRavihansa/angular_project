@@ -15,6 +15,9 @@ import { ProductService } from '../../service/product.service';
 export class ProductsComponent {
 
   showAddProduct: boolean | undefined;
+  showEditProduct! : boolean; // you can also declare undefined veriables using !
+  selectedProductId! : number;
+
   isLoading :boolean = false;
   firstProductItemName = "White Basmathi Rice";
   secondProductItemName = "wheat Flour";
@@ -27,8 +30,11 @@ export class ProductsComponent {
 
   constructor(private productService: ProductService) {}
 
-  public showAddProducts() {
+  public openAddProducts() {
     this.showAddProduct = true;
+  }
+  public openEditProducts() {
+    this.showEditProduct = true;
   }
   public hideAddProducts() {
     this.showAddProduct = false;
@@ -56,9 +62,10 @@ export class ProductsComponent {
     });
   }
 
-  public selectProduct(row: number) {
+  public selectProduct(row: number, selectedPId: number) {
     this.rowSelected = true;
     this.rowIndex = row;
+    this.selectedProductId = selectedPId;
   }
 
 }

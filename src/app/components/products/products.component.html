@@ -1,6 +1,6 @@
 <div class="container-fluid main-content">
   <div class="row">
-    <section [ngClass]="showAddProduct? 'col-md-7': '' ">
+    <section [ngClass]="showAddProduct || showEditProduct? 'col-md-7': '' ">
       <div class="product-header">
         <h1>Product List
           <span *ngIf="!isLoading" (click)="refresh()" style="cursor: pointer;">
@@ -8,7 +8,7 @@
           </span>
           <i *ngIf="isLoading" class="fa fa-refresh fa-spin fa-fw" aria-hidden="true"></i>
       </h1>
-        <button *ngIf="!showAddProduct" type="button" class="btn btn-outline-primary" (click)="showAddProducts()">Add Products</button>
+        <button *ngIf="!showAddProduct" type="button" class="btn btn-outline-primary" (click)="openAddProducts()">Add Products</button>
         <button *ngIf="showAddProduct" type="button" class="btn btn-outline-primary" (click)="hideAddProducts()">Close</button>
       </div>
       <table class="table">
@@ -25,7 +25,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products; let i=index" (click)="selectProduct(i)" [ngClass]="rowIndex == i? 'active':''">
+          <tr *ngFor="let product of products; let i=index" (click)="selectProduct(i, product.id)" [ngClass]="rowIndex == i? 'active':''">
             <th scope="row">{{product.id}}</th>
             <td>{{product.productName}}</td>
             <td>{{product.description | contentLimiter}}</td>
@@ -44,15 +44,16 @@
             </td>
             <td>
               <button [disabled]="rowIndex != i || !rowSelected" ><i class="fa fa-eye icon"></i></button>
-              <button [disabled]="rowIndex != i || !rowSelected" ><i class="fa fa-pencil-square-o icon"></i></button>
+              <button [disabled]="rowIndex != i || !rowSelected" ><i class="fa fa-pencil-square-o icon" (click)="openEditProducts()"></i></button>
               <!-- interpolation with data binding -->
             </td>
           </tr>
         </tbody>
       </table>
     </section>
-    <section class="col-md-5" *ngIf="showAddProduct">
-      <app-add-product></app-add-product>
+    <section class="col-md-5" *ngIf="showAddProduct || showEditProduct">
+      <app-add-product *ngIf="showAddProduct"></app-add-product>
+      <app-edit-product *ngIf="showEditProduct" [prductId]="selectedProductId"></app-edit-product>
     </section>
   </div>
 </div>
