@@ -1,1 +1,102 @@
-<!-- <p>view-product-details works!</p> -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="text-end mt-3 mb-3"></div>
+
+    <div class="col-md-10 content-bg">
+      <div>
+        <h5 class="mb-3">{{ selectedProduct.productName }}</h5>
+      </div>
+      <div>
+        <table>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label">Product Id:</label>
+              </div>
+            </td>
+            <td>
+              <span>{{ selectedProduct.id }}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label">Description:</label>
+              </div>
+            </td>
+            <td>
+              <span>{{ selectedProduct.description }}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label">Category:</label>
+              </div>
+            </td>
+            <td>
+              <span>{{ selectedProduct.category }}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label">Brand:</label>
+              </div>
+            </td>
+            <td>
+              <span>{{ selectedProduct.brand }}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label">Expire Date:</label>
+              </div>
+            </td>
+            <td>
+              <span>{{ selectedProduct.expiredDate | date: "dd/MM/yyyy" }}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label">Manufactured Date:</label>
+              </div>
+            </td>
+            <td>
+              <span>{{ selectedProduct.manufacturedDate | date: "dd/MM/yyyy" }}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label">Unit Price:</label>
+              </div>
+            </td>
+            <td>
+              <span>{{ selectedProduct.unitPrice | currency: "Rs." }}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label">Quantity:</label>
+              </div>
+            </td>
+            <td>
+              <span>{{ selectedProduct.quantity }}</span>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="form-group">
+                <label class="form-label">Created Date:</label>
+              </div>
+            </td>
+            <td> <span>{{ selectedProduct.createdDate | date: "dd/MM/yyyy" }}</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

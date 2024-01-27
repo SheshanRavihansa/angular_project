@@ -29,12 +29,12 @@ export class ProductsComponent {
     this.getProducts();
   }
 
-  @ViewChild(ViewProductDetailsComponent) productDetailsComp!: ViewProductDetailsComponent;
-  viewProductDetailsMsg!: string;
+  // @ViewChild(ViewProductDetailsComponent) productDetailsComp!: ViewProductDetailsComponent;
+  // viewProductDetailsMsg!: string;
 
-  ngAfterViewInit() {
-    this.viewProductDetailsMsg = this.productDetailsComp.productDetailsMessage;
-  }
+  // ngAfterViewInit() {
+  //   this.viewProductDetailsMsg = this.productDetailsComp.productDetailsMessage;
+  // }
 
   constructor(private productService: ProductService) { }
 

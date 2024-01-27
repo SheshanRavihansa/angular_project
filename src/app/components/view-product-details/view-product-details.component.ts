@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ProductService } from '../../service/product.service';
+import { Product } from '../../model/product.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-product-details',
@@ -7,6 +10,19 @@ import { Component } from '@angular/core';
 })
 export class ViewProductDetailsComponent {
 
-  productDetailsMessage = "This message from view product details"
+  selectedProduct!: Product;
+
+  // productDetailsMessage = "This message from view product details"
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit(): void {
+    let productId = this.route.snapshot.paramMap.get('id');
+    this.productService.getProductById(productId).subscribe((res) => {
+      this.selectedProduct = res.data;
+    })
+  }
 
 }

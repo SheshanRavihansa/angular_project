@@ -13,7 +13,7 @@
         <button *ngIf="showAddProduct" type="button" class="btn btn-outline-primary" (click)="hideAddProducts()">Close
         </button>
       </div>
-      <h2>{{viewProductDetailsMsg}}</h2>
+      <!-- <h2>{{viewProductDetailsMsg}}</h2> -->
       <table class="table">
         <thead class="thead-light t-head">
           <tr>
@@ -48,7 +48,11 @@
               <span [ngClass]="{'bg-success': true }" *ngIf="product.quantity > 200">Sufficient Inventory Level</span>
             </td>
             <td>
-              <button [disabled]="rowIndex != i || !rowSelected"><i class="fa fa-eye icon"></i></button>
+              <a [routerLink]="['/product-detail-view', product.id]" routerLinkActive="active" >
+                <button type="button" [disabled]="rowIndex != i">
+                  <i class="fa fa-eye icon"></i>
+                </button>
+              </a>
               <button [disabled]="rowIndex != i || !rowSelected"><i class="fa fa-pencil-square-o icon"
                   (click)="openEditProducts()"></i></button>
               <!-- interpolation with data binding -->
@@ -60,9 +64,9 @@
     <section class="col-md-5" *ngIf="showAddProduct || showEditProduct">
       <app-add-product *ngIf="showAddProduct" (productAddEvent)="updateProductList()"
         (cancelEvent)="hideAddProducts()"></app-add-product>
-      <app-edit-product *ngIf="showEditProduct" [product]="selectedProduct"
-        (cancelEditEvent)="cancelEditView()" (editEvent)="updateProductList()"></app-edit-product>
+      <app-edit-product *ngIf="showEditProduct" [product]="selectedProduct" (cancelEditEvent)="cancelEditView()"
+        (editEvent)="updateProductList()"></app-edit-product>
     </section>
-    <app-view-product-details></app-view-product-details>
+    <!-- <app-view-product-details></app-view-product-details> -->
   </div>
 </div>
