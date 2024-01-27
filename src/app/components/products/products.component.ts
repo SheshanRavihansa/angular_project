@@ -32,17 +32,23 @@ export class ProductsComponent {
   @ViewChild(ViewProductDetailsComponent) productDetailsComp!: ViewProductDetailsComponent;
   viewProductDetailsMsg!: string;
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.viewProductDetailsMsg = this.productDetailsComp.productDetailsMessage;
   }
 
   constructor(private productService: ProductService) { }
 
   public openAddProducts() {
+    if (this.showEditProduct) {
+      this.showEditProduct = false;
+    }
     this.showAddProduct = true;
   }
 
   public openEditProducts() {
+    if (this.showAddProduct) {
+      this.showAddProduct = false;
+    }
     this.showEditProduct = true;
   }
 
@@ -65,11 +71,12 @@ export class ProductsComponent {
   }
 
   updateProductList() {
-    this.refresh();
+    this.getProducts();
   }
 
   cancelEditView() {
     this.showEditProduct = false;
+    this.getProducts();
   }
 
   getProducts() {

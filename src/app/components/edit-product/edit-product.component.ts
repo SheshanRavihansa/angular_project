@@ -16,6 +16,7 @@ export class EditProductComponent implements OnInit {
   isDataUploading = false;
 
   @Output() cancelEditEvent: EventEmitter<void> = new EventEmitter<void>();
+  @Output() editEvent: EventEmitter<void> = new EventEmitter<void>();
 
   ngOnInit(): void { }
 
@@ -27,6 +28,8 @@ export class EditProductComponent implements OnInit {
     this.isDataUploading = true;
     this.productService.updateProduct(this.product).subscribe(()=> {
       this.isDataUploading = false;
+      this.editEvent.emit();
+      this.cancelEditEvent.emit();
     });
   }
 }
