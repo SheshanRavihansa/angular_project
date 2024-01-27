@@ -10,9 +10,10 @@
         </h1>
         <button *ngIf="!showAddProduct" type="button" class="btn btn-outline-primary" (click)="openAddProducts()">Add
           Products</button>
-        <button *ngIf="showAddProduct" type="button" class="btn btn-outline-primary"
-          (click)="hideAddProducts()">Close</button>
+        <button *ngIf="showAddProduct" type="button" class="btn btn-outline-primary" (click)="hideAddProducts()">Close
+        </button>
       </div>
+      <h2>{{viewProductDetailsMsg}}</h2>
       <table class="table">
         <thead class="thead-light t-head">
           <tr>
@@ -57,8 +58,11 @@
       </table>
     </section>
     <section class="col-md-5" *ngIf="showAddProduct || showEditProduct">
-      <app-add-product *ngIf="showAddProduct" (productAddEvent)="updateProductList()" (cancelEvent)="hideAddProducts()"></app-add-product>
-      <app-edit-product *ngIf="showEditProduct" [productId]="selectedProductId" (cancelEditEvent)="cancelEditView()"></app-edit-product>
+      <app-add-product *ngIf="showAddProduct" (productAddEvent)="updateProductList()"
+        (cancelEvent)="hideAddProducts()"></app-add-product>
+      <app-edit-product *ngIf="showEditProduct" [productId]="selectedProductId"
+        (cancelEditEvent)="cancelEditView()"></app-edit-product>
     </section>
+    <app-view-product-details></app-view-product-details>
   </div>
 </div>

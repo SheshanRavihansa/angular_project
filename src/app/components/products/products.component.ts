@@ -1,7 +1,8 @@
 import { ReturnStatement } from '@angular/compiler';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Product } from '../../model/product.model';
 import { ProductService } from '../../service/product.service';
+import { ViewProductDetailsComponent } from '../view-product-details/view-product-details.component';
 
 @Component({
   selector: 'app-products',
@@ -26,6 +27,13 @@ export class ProductsComponent {
 
   ngOnInit(): void {
     this.getProducts();
+  }
+
+  @ViewChild(ViewProductDetailsComponent) productDetailsComp!: ViewProductDetailsComponent;
+  viewProductDetailsMsg!: string;
+
+  ngAfterViewInit(){
+    this.viewProductDetailsMsg = this.productDetailsComp.productDetailsMessage;
   }
 
   constructor(private productService: ProductService) { }
@@ -60,7 +68,7 @@ export class ProductsComponent {
     this.refresh();
   }
 
-  cancelEditView(){
+  cancelEditView() {
     this.showEditProduct = false;
   }
 
