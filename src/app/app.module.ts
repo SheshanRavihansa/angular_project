@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ContentLimiterPipe } from './content-limiter.pipe';
 import { AddProductComponent } from './components/add-product/add-product.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ViewProductDetailsComponent } from './components/view-product-details/view-product-details.component';
@@ -23,6 +23,7 @@ import { ViewProductDetailsComponent } from './components/view-product-details/v
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],

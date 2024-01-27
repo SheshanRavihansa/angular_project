@@ -1,5 +1,76 @@
-<p>edit-product works!</p>
-<h1>Product Id = {{productId}} </h1>
+<!-- <p>edit-product works!</p>
+<h1>Product Id = {{prductId}} </h1>
 <div class="col-12 text-end mt-5">
   <button type="button" class="btn btn btn-outline-secondary me-2" (click)="cancel()">cancel</button>
+</div> -->
+
+
+<div class="add-product-section mt-3">
+  <div class="box-head">
+    <h1 class="pr-name">Edit product</h1>
+  </div>
+  <form class="row g-3" #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="form-label">Product Name</label>
+      <input type="text" class="form-control" name="productName" #productName="ngModel"
+        [(ngModel)]="product.productName">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Product Description</label>
+      <input type="text" class="form-control" name="description" #description="ngModel"
+        [(ngModel)]="product.description">
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-label">Product Category</label>
+          <select class="form-control" name="category" #category="ngModel" [(ngModel)]="product.category">
+            <option>Rice</option>
+            <option>Biscuit</option>
+            <option>Chocalate</option>
+            <option>Bakery</option>
+            <option>Margerine</option>
+            <option>Diary</option>
+            <option>Grocery</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Brand</label>
+          <input type="text" class="form-control" name="brand" #brand="ngModel" [(ngModel)]="product.brand">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-label">Expiry Date</label>
+          <input type="date" class="form-control" name="expiredDate" #expiredDate="ngModel"
+            [(ngModel)]="product.expiredDate">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Manufactured Date</label>
+          <input type="date" class="form-control" name="manufacturedDate" #manufacturedDate="ngModel"
+            [(ngModel)]="product.manufacturedDate">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-label">Unit Price</label>
+          <input type="number" class="form-control" name="unitPrice" #unitPrice="ngModel"
+            [(ngModel)]="product.unitPrice">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Quantity</label>
+          <input type="number" class="form-control" name="quantity" #quantity="ngModel" [(ngModel)]="product.quantity">
+        </div>
+      </div>
+    </div>
+    <div class="col-12 text-end mt-5">
+      <button type="button" class="btn btn btn-outline-secondary me-2" (click)="cancel()">cancel</button>
+      <button type="submit" class="btn btn-outline-primary" [disabled]="form.invalid">Update <i *ngIf="isDataUploading"
+          class="fa fa-spinner fa-pulse fa-fw"></i></button>
+    </div>
+  </form>
 </div>

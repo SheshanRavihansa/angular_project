@@ -17,7 +17,7 @@ export class ProductsComponent {
 
   showAddProduct: boolean | undefined;
   showEditProduct!: boolean; // you can also declare undefined veriables using !
-  selectedProductId!: number;
+  selectedProduct!: Product;
 
   isLoading: boolean = false;
   firstProductItemName = "White Basmathi Rice";
@@ -80,10 +80,10 @@ export class ProductsComponent {
     });
   }
 
-  public selectProduct(row: number, selectedPId: number) {
+  public selectProduct(row: number, product: Product) {
     this.rowSelected = true;
     this.rowIndex = row;
-    this.selectedProductId = selectedPId;
+    this.selectedProduct = product;
   }
 
 }

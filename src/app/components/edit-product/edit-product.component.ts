@@ -1,20 +1,32 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Product } from '../../model/product.model';
+import { ProductService } from '../../service/product.service';
 
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
   styleUrl: './edit-product.component.css'
 })
-export class EditProductComponent {
+export class EditProductComponent implements OnInit {
 
-  @Input()
-  productId!: number;
+  constructor(private productService: ProductService) { };
 
-  @Output()
-  cancelEditEvent: EventEmitter<void> = new EventEmitter<void>();
+  // @Input() productId!: number;
+  @Input() product!: Product;
+  isDataUploading = false;
 
-  cancel(){
+  @Output() cancelEditEvent: EventEmitter<void> = new EventEmitter<void>();
+
+  ngOnInit(): void { }
+
+  cancel() {
     this.cancelEditEvent.emit();
   }
 
+  onSubmit() {
+    this.isDataUploading = true;
+    this.productService.updateProduct(this.product).subscribe(()=> {
+      this.isDataUploading = false;
+    });
+  }
 }

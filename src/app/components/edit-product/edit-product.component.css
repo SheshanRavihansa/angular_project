@@ -1,0 +1,42 @@
+.add-product-section {
+  background-color: #7c7406;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+}
+
+.box-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #c8daf8;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.pr-name {
+  font-size: 22px;
+  /* color: rgb(183, 74, 74); */
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.error {
+  color: red;
+}
+
+.btn-outline-primary.disabled {
+  color: #060606;
+  background-color: #c3cddd;
+}
+
+.btn-outline-secondary {
+  color: #060606;
+  background-color: #c3cddd;
+}
+.btn-outline-secondary:hover {
+  color: white;
+  background-color: #e66060;
+}
