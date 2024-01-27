@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class EditProductComponent {
 
   @Input()
-  prductId!: number;
+  productId!: number;
 
   @Output()
   cancelEditEvent: EventEmitter<void> = new EventEmitter<void>();
